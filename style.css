@@ -1,0 +1,42 @@
+.top {
+  text-align: center;
+}
+
+#newGame {
+  margin: 1em 0;
+  padding: 1em;
+  font-size: 1.4em;
+  font-weight: bolder;
+  background-color: cornflowerblue;
+  color: aliceblue;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+}
+
+.buttons {
+  font-size: larger;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.results {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1em 0;
+}
+
+.wins,
+.draws,
+.losses {
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message {
+  white-space: pre;
+}

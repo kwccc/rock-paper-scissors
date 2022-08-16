@@ -1,68 +1,67 @@
-const options = ['ROCK', 'PAPER', 'SCISSORS']
 let win = 0
 let loss = 0
+let draw = 0
+
+const winCounter = document.querySelector('.winCounter')
+const drawCounter = document.querySelector('.drawCounter')
+const lossCounter = document.querySelector('.lossCounter')
+const message = document.querySelector('.message')
 
 function getComputerChoice() {
-    return options[Math.floor(Math.random() * 3)]
+  const options = ['ROCK', 'PAPER', 'SCISSORS']
+  return options[Math.floor(Math.random() * 3)]
 }
 
-function getPlayerChoice() {
-    const playerSelection = prompt('Rock, Paper or Scissors?').toUpperCase()
-    return playerSelection
+function playRound(e) {
+  if (win === 5 || loss === 5) return
+
+  const playerSelection = this.textContent.toUpperCase()
+  const computerSelection = getComputerChoice()
+
+  if (playerSelection === computerSelection) {
+    draw++
+    drawCounter.textContent = draw
+    message.textContent += `\nDraw! You both chose ${playerSelection}`
+    return
+  }
+
+  if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS' ||
+      playerSelection === 'SCISSORS' && computerSelection === 'PAPER' ||
+      playerSelection === 'PAPER' && computerSelection === 'ROCK') {
+    win++
+    winCounter.textContent = win
+    message.textContent += `\nYour ${playerSelection} beats the computer's ${computerSelection}`
+  } else {
+    loss++
+    lossCounter.textContent = loss
+    message.textContent += `\nYour ${playerSelection} was beaten by the computer's ${computerSelection}`
+  }
+
+  checkScore()
 }
 
-function playRound(playerSelection, computerSelection) {
-    // console.log(playerSelection)
-    // console.log(computerSelection)
-
-    if (playerSelection === computerSelection) return 'Draw!'
-
-    switch (playerSelection) {
-        case 'ROCK':
-            if (computerSelection === 'PAPER') {
-                loss++
-                return 'You Lose! Paper beats Rock'
-            } else if (computerSelection === 'SCISSORS') {
-                win++
-                return 'You Win! Rock beats Scissors'
-            }
-            break
-        case 'PAPER':
-            if (computerSelection === 'SCISSORS') {
-                loss++
-                return 'You Lose! Scissors beats Paper'
-            } else if (computerSelection === 'ROCK') {
-                win++
-                return 'You Win! Paper beats Rock'
-            }
-            break
-        case 'SCISSORS':
-            if (computerSelection === 'ROCK') {
-                loss++
-                return 'You Lose! Rock beats Scissors'
-            } else if (computerSelection === 'Paper') {
-                win++
-                return 'You Win! Scissors beats PAPER'
-            }
-            break
-        default:
-            return 'Invalid choice!'
-    } 
-}
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getPlayerChoice(), getComputerChoice()))
+function checkScore() {
+  if (win === 5 || loss === 5) {
+    if (win === 5) {
+      message.textContent += `\nYou WIN! ${win} - ${loss}`
+    } else if (loss === 5) {
+      message.textContent += `\nYou LOSE! ${win} - ${loss}`
     }
-
-    if (win > loss) {
-        console.log('You WIN! ' + win + '-' + loss)
-    } else if (loss > win) {
-        console.log('You LOSE! ' + win + '-' + loss)
-    } else {
-        console.log('DRAW! ' + win + '-' + loss)
-    }
+  }
 }
 
-// console.log(playRound(getPlayerChoice(), getComputerChoice()))
-game()
+function resetScores() {
+  win = 0
+  loss = 0
+  draw = 0
+  winCounter.textContent = 0
+  lossCounter.textContent = 0
+  drawCounter.textContent = 0
+  message.textContent = ''
+}
+
+const btns = document.querySelectorAll('button')
+btns.forEach(btn => btn.addEventListener('click', playRound))
+
+const reset = document.querySelector('#newGame')
+reset.addEventListener('click', resetScores)
