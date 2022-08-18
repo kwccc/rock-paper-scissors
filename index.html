@@ -9,32 +9,46 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="top">
-    <button id="newGame">New Game</button>
+  <div id="header">
+    <h1>ROCK PAPER SCISSORS</h1>
   </div>
+  <div class="results">
+    <div></div>
+    <div class="player">
+      <div class="name">Player</div>
+      <div class="playerChoice">
+        <img class="playerChoiceImage">
+      </div>
+    </div>
+    <div class="scorebox">
+      <div class="wins">
+        <div class="winCounter">0</div>
+      </div>
+      <div class="separator">&nbsp;-&nbsp;</div>
+      <div class="losses">
+        <div class="lossCounter">0</div>
+      </div>
+    </div>
+    <div class="computer">
+      <div class="name">Computer</div>
+      <div class="computerChoice">
+        <img class="computerChoiceImage">
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <div class="message">First to 5 points wins!</div>
   <div class="options">
     <div class="left-option"></div>
     <div>
-      <button class="buttons">Rock</button>
-      <button class="buttons">Paper</button>
-      <button class="buttons">Scissors</button>
+      <button class="buttons" id="Rock"><img class="buttonChoice" src="./images/Rock.png" alt="Rock"></button>
+      <button class="buttons" id="Paper"><img class="buttonChoice" src="./images/Paper.png" alt="Paper"></button>
+      <button class="buttons" id="Scissors"><img class="buttonChoice" src="./images/Scissors.png" alt="Scissors"></button>
     </div>
     <div class="right-option"></div>
   </div>
-  <div class="results">
-    <div class="wins">
-      Wins
-      <div class="winCounter">0</div>
-    </div>
-    <div class="draws">
-      Draws
-      <div class="drawCounter">0</div>
-    </div>
-    <div class="losses">
-      Losses
-      <div class="lossCounter">0</div>
-    </div>
+  <div class="bottom">
+    <button id="newGame">New Game</button>
   </div>
-  <div class="message"></div>
 </body>
 </html>
